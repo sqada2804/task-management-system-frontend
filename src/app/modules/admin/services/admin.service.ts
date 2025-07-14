@@ -19,6 +19,24 @@ export class AdminService {
     })
   }
 
+  postTask(taskDTO: any):Observable<any>{
+    return this.http.post(BASIC_RUL + "api/admin/task", taskDTO, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+    deleteTask(taskId: number):Observable<any>{
+    return this.http.delete(BASIC_RUL + "api/admin/task/" + taskId, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  getAllTasks():Observable<any>{
+    return this.http.get(BASIC_RUL + "api/admin/tasks", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   private createAuthorizationHeader():HttpHeaders{
     return new HttpHeaders().set(
       'Authorization', 'Bearer ' + StorageService.getToken()

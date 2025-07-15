@@ -31,8 +31,20 @@ export class AdminService {
     })
   }
 
+  getTaskById(taskId: number): Observable<any>{
+    return this.http.get(BASIC_RUL + "api/admin/task/" + taskId, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   getAllTasks():Observable<any>{
     return this.http.get(BASIC_RUL + "api/admin/tasks", {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+  updateTask(taskDTO: any, id: number):Observable<any>{
+    return this.http.put(BASIC_RUL + `api/admin/task/${id}`, taskDTO, {
       headers: this.createAuthorizationHeader()
     })
   }
